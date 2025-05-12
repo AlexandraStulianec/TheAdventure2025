@@ -86,7 +86,10 @@ public class GameLogic
         
         RenderTerrain();
         RenderAllObjects(msSinceLastFrame);
-            
+
+        //Use the RenderStats to display the statistics
+       _renderer.RenderStats(_player);
+
         _renderer.PresentFrame();
     }
 
@@ -126,6 +129,9 @@ public class GameLogic
                 worldCoords.X, worldCoords.Y);
         _gameObjects.Add(bomb.Id, bomb);
         ++_bombIds;
+
+         // Increment bombs placed stat
+        _player?.IncrementBombsPlaced();
     }
 
     public void RenderTerrain()
